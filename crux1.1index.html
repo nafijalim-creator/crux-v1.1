@@ -1,0 +1,862 @@
+<!DOCTYPE html>
+<html lang="bn" class="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CRUX | কঠিন পরীক্ষার মূল চাবিকাঠি ও সঠিক সমাধান</title>
+  
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- FontAwesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <!-- Google Fonts: Hind Siliguri -->
+  <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            cruxBg: '#030712',
+            cruxCard: '#0b1329',
+            cruxCyan: '#00f3ff',
+            cruxCyanHover: '#00c8d2',
+            cruxAccent: '#38bdf8',
+            cruxDark: '#0a1128'
+          },
+          fontFamily: {
+            sans: ['Hind Siliguri', 'sans-serif'],
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    body {
+      background-color: #030712;
+      color: #f3f4f6;
+      font-family: 'Hind Siliguri', sans-serif;
+    }
+    .glass {
+      background: rgba(11, 19, 41, 0.75);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid rgba(0, 243, 255, 0.18);
+    }
+    .glass-glow {
+      box-shadow: 0 0 25px rgba(0, 243, 255, 0.12);
+    }
+    .glow-text {
+      text-shadow: 0 0 12px rgba(0, 243, 255, 0.6);
+    }
+    .hide-scrollbar::-webkit-scrollbar {
+      display: none;
+    }
+    .hide-scrollbar {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
+  </style>
+</head>
+<body class="bg-cruxBg min-h-screen flex flex-col justify-between selection:bg-cruxCyan selection:text-black">
+
+  <!-- Top Navigation Bar -->
+  <header class="sticky top-0 z-40 glass border-b border-gray-800/80 px-4 py-3">
+    <div class="max-w-7xl mx-auto flex justify-between items-center">
+      <!-- Dynamic Brand Logo with Admin Quick Set Trigger -->
+      <div onclick="navTo('home')" class="cursor-pointer flex items-center gap-2.5">
+        <div id="brand-logo-container" class="w-10 h-10 rounded-xl bg-gradient-to-tr from-cyan-500 to-blue-600 flex items-center justify-center font-bold text-black text-xl shadow-[0_0_15px_rgba(0,243,255,0.5)] overflow-hidden relative group">
+          <span id="brand-logo-text">C</span>
+          <img id="brand-logo-img" class="hidden w-full h-full object-cover" src="" alt="Logo">
+        </div>
+        <div>
+          <span class="text-2xl font-black tracking-wider text-white glow-text">CRUX</span>
+          <span class="hidden sm:inline-block text-xs text-cruxCyan pl-2 border-l border-gray-700">Exam Engine</span>
+        </div>
+      </div>
+
+      <!-- Header Status / Auth -->
+      <div id="header-user-status" class="flex items-center gap-3"></div>
+    </div>
+  </header>
+
+  <!-- Free Trial Banner -->
+  <div id="trial-banner" class="hidden bg-gradient-to-r from-cyan-950/80 via-blue-950/80 to-purple-950/80 border-b border-cyan-500/30 py-2.5 px-4 text-center text-xs sm:text-sm text-cyan-200">
+    ⚡ <span class="font-bold text-white">২৪ ঘণ্টার অল-অ্যাক্সেস ফ্রি ট্রায়াল চালু আছে!</span> অবশিষ্ট সময়: <span id="trial-timer" class="font-mono font-bold text-cruxCyan">--:--:--</span>
+  </div>
+
+  <!-- Main Container -->
+  <main class="flex-grow max-w-7xl w-full mx-auto p-4 sm:p-6">
+
+    <!-- PAGE: HOME -->
+    <section id="page-home" class="space-y-10">
+      <div class="relative glass rounded-3xl p-6 sm:p-12 overflow-hidden border border-cyan-500/20 glass-glow flex flex-col lg:flex-row items-center justify-between gap-8">
+        <div class="absolute -top-20 -left-20 w-64 h-64 bg-cyan-500/10 rounded-full blur-3xl pointer-events-none"></div>
+        <div class="space-y-4 max-w-2xl z-10 text-center lg:text-left">
+          <h1 class="text-3xl sm:text-5xl font-extrabold text-white leading-tight">
+            কঠিন পরীক্ষার <span class="text-transparent bg-clip-text bg-gradient-to-r from-cruxCyan to-blue-400 glow-text">মূল চাবিকাঠি</span> ও সঠিক সমাধান
+          </h1>
+          <p class="text-gray-300 text-sm sm:text-base leading-relaxed">
+            বিগত বছরের প্রশ্ন (PYQ), প্রেডিক্টেড সেট ও সিকিউরড ডাইজেস্ট ভল্ট এখন এক ছাদের নিচে সম্পূর্ণ নিখুঁত ও দ্রুততম ইন্টারফেসে।
+          </p>
+          <div class="flex flex-wrap gap-4 pt-2 justify-center lg:justify-start">
+            <button onclick="navTo('courses')" class="px-6 py-3 rounded-xl font-bold bg-cruxCyan text-black hover:bg-cyan-300 transition-all shadow-[0_0_20px_rgba(0,243,255,0.4)]">
+              কোর্স ও প্র্যাকটিস হাব <i class="fa-solid fa-arrow-right ml-1"></i>
+            </button>
+            <button onclick="navTo('vault')" class="px-6 py-3 rounded-xl font-semibold glass border border-gray-700 hover:border-cruxCyan text-white transition-all">
+              📚 PDF Resource Vault
+            </button>
+          </div>
+        </div>
+
+        <div class="w-full lg:w-80 glass rounded-2xl border border-cyan-500/30 p-6 text-center relative overflow-hidden shrink-0">
+          <div id="hero-card-banner-img" class="w-full h-32 rounded-xl bg-gradient-to-tr from-cyan-900 to-blue-900 mb-3 flex items-center justify-center overflow-hidden border border-cyan-500/20">
+            <i class="fa-solid fa-user-doctor text-4xl text-cruxCyan glow-text"></i>
+          </div>
+          <h3 class="text-lg font-bold text-white">Featured Masterpiece Batch</h3>
+          <p class="text-xs text-gray-400 mt-1">সর্বাধুনিক প্র্যাকটিস ইঞ্জিন ও ক্যাশ-ফ্লো সিস্টেম</p>
+          <button onclick="openEnrollModal('mbbs-master')" class="mt-4 w-full py-2.5 bg-gradient-to-r from-cyan-500 to-blue-600 text-black font-bold text-xs rounded-xl shadow-md hover:opacity-90">
+            এনরোল করুন
+          </button>
+        </div>
+      </div>
+
+      <div>
+        <h2 class="text-xl font-bold text-white mb-4 flex items-center gap-2">
+          <i class="fa-solid fa-layer-group text-cruxCyan"></i> ক্যাটাগরি অনুযায়ী প্র্যাকটিস এক্সাম
+        </h2>
+        <div class="grid grid-cols-2 sm:grid-cols-4 gap-4" id="home-category-grid"></div>
+      </div>
+    </section>
+
+    <!-- PAGE: COURSES -->
+    <section id="page-courses" class="hidden space-y-6">
+      <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 border-b border-gray-800 pb-4">
+        <div>
+          <h1 class="text-2xl font-bold text-white">All Courses & Practice Exams</h1>
+          <p class="text-xs text-gray-400">আপনার কাঙ্ক্ষিত ক্যাটাগরি সিলেক্ট করুন</p>
+        </div>
+        <div class="flex gap-2 overflow-x-auto hide-scrollbar w-full sm:w-auto" id="course-filter-pills"></div>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" id="course-list-container"></div>
+    </section>
+
+    <!-- PAGE: EXAM RUNNER -->
+    <section id="page-exam-runner" class="hidden space-y-4">
+      <div class="flex justify-between items-center glass p-4 rounded-xl">
+        <button onclick="navTo('courses')" class="px-4 py-2 bg-gray-800 hover:bg-gray-700 rounded-lg text-xs font-semibold">
+          <i class="fa-solid fa-arrow-left"></i> এক্সাম হাব-এ ফিরুন
+        </button>
+        <h2 id="exam-runner-title" class="text-sm sm:text-base font-bold text-cruxCyan truncate max-w-xs sm:max-w-md">Live Exam</h2>
+        <button onclick="saveCurrentMistakeMock()" class="px-3 py-1.5 bg-red-500/20 text-red-400 border border-red-500/30 rounded-lg text-xs">
+          <i class="fa-solid fa-bug"></i> টেস্ট মিসটেক সেভ
+        </button>
+      </div>
+      <div class="w-full h-[75vh] glass rounded-2xl overflow-hidden border border-cyan-500/30 relative">
+        <iframe id="exam-iframe" class="w-full h-full border-0" src="" allowfullscreen></iframe>
+      </div>
+    </section>
+
+    <!-- PAGE: MISTAKES -->
+    <section id="page-mistakes" class="hidden space-y-6">
+      <div class="flex justify-between items-center border-b border-gray-800 pb-4">
+        <div>
+          <h1 class="text-2xl font-bold text-white flex items-center gap-2">
+            <i class="fa-solid fa-circle-exclamation text-red-400"></i> Mistake Vault (ভুলের ডায়েরি)
+          </h1>
+          <p class="text-xs text-gray-400">পরীক্ষায় ভুল হওয়া প্রশ্নগুলোর সংগ্রহ</p>
+        </div>
+        <button onclick="clearMistakeVault()" class="px-3 py-1.5 bg-red-900/40 text-red-300 border border-red-700/50 rounded-lg text-xs">সব সাফ করুন</button>
+      </div>
+      <div id="mistake-list" class="space-y-4"></div>
+    </section>
+
+    <!-- PAGE: VAULT -->
+    <section id="page-vault" class="hidden space-y-6">
+      <div class="border-b border-gray-800 pb-4">
+        <h1 class="text-2xl font-bold text-white flex items-center gap-2">
+          <i class="fa-solid fa-vault text-cruxCyan"></i> Premium PDF Resource Vault
+        </h1>
+        <p class="text-xs text-gray-400">শীর্ষ কোচিংয়ের ডাইজেস্ট ও প্রশ্ন ব্যাংক</p>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" id="vault-list-container"></div>
+    </section>
+
+   <!-- PAGE: DASHBOARD -->
+    <section id="page-dashboard" class="hidden space-y-6">
+      <div class="glass p-6 rounded-2xl border border-cyan-500/30 flex flex-col md:flex-row justify-between items-start md:items-center gap-6">
+        <div>
+          <span class="text-xs text-cruxCyan font-bold tracking-widest uppercase">Student Portal</span>
+          <h1 id="dash-user-name" class="text-2xl font-black text-white">--</h1>
+          <p id="dash-user-phone" class="text-xs text-gray-400">Phone: --</p>
+        </div>
+        <div class="glass p-5 rounded-xl border border-gray-700 w-full md:w-80 space-y-2">
+          <span class="text-xs text-gray-400">রেফারেল ক্যাশব্যাক ব্যালেন্স</span>
+          <div class="text-3xl font-black text-white" id="dash-ref-balance">৳ 0.00</div>
+        </div>
+      </div>
+      <div class="glass p-6 rounded-2xl border border-gray-800 space-y-3">
+        <h3 class="text-lg font-bold text-white flex items-center gap-2">
+          <i class="fa-solid fa-share-nodes text-cruxCyan"></i> আপনার ইউনিক রেফারেল লিংক
+        </h3>
+        <div class="flex flex-col sm:flex-row gap-3">
+          <input type="text" id="dash-ref-code-input" readonly class="bg-gray-900 border border-gray-700 rounded-xl px-4 py-2.5 text-xs text-cruxCyan font-mono w-full sm:w-48 font-bold text-center">
+          <input type="text" id="dash-ref-url-input" readonly class="bg-gray-900 border border-gray-700 rounded-xl px-4 py-2.5 text-xs text-gray-300 w-full flex-grow">
+          <button onclick="copyReferralLink()" class="px-5 py-2.5 bg-cruxCyan text-black font-bold rounded-xl text-xs shrink-0">কপি লিংক</button>
+        </div>
+      </div>
+      <div class="space-y-4">
+        <h3 class="text-lg font-bold text-white">আমার এনরোল করা কোর্সসমূহ</h3>
+        <div id="dash-enrolled-list" class="grid grid-cols-1 md:grid-cols-2 gap-4"></div>
+      </div>
+    </section>
+
+    <!-- PAGE: GOD-MODE ADMIN PANEL (ULTRA ADVANCED WITH DIRECT GALLERY LOGO & COURSE BUILDER) -->
+    <section id="page-admin" class="hidden space-y-6">
+      <div class="flex justify-between items-center border-b border-gray-800 pb-4">
+        <div>
+          <h1 class="text-2xl font-black text-white flex items-center gap-2">
+            <i class="fa-solid fa-user-shield text-amber-400"></i> God-Mode Admin Control Center
+          </h1>
+          <p class="text-xs text-gray-400">লোগো সেটআপ, গ্যালারি থেকে ইমেজ আপলোড, এবং ডাইনামিক কোর্স/মেডিকেল এক্সাম পেজ ম্যানেজার</p>
+        </div>
+        <button onclick="logoutAdmin()" class="px-3 py-1.5 bg-red-900/40 text-red-300 border border-red-700/50 rounded-lg text-xs">লগআউট</button>
+      </div>
+
+      <!-- Admin Tabs -->
+      <div class="flex gap-2 border-b border-gray-800 pb-2 overflow-x-auto">
+        <button onclick="switchAdminTab('branding')" id="atab-btn-branding" class="px-4 py-2 text-xs font-bold rounded-lg bg-cruxCyan text-black">
+          🖼️ Platform Logo & Branding
+        </button>
+        <button onclick="switchAdminTab('courses')" id="atab-btn-courses" class="px-4 py-2 text-xs font-bold rounded-lg text-gray-400 hover:text-white">
+          📚 Add / Edit Courses & Exams
+        </button>
+        <button onclick="switchAdminTab('payouts')" id="atab-btn-payouts" class="px-4 py-2 text-xs font-bold rounded-lg text-gray-400 hover:text-white">
+          💸 Payouts & Trx
+        </button>
+        <button onclick="switchAdminTab('coupons')" id="atab-btn-coupons" class="px-4 py-2 text-xs font-bold rounded-lg text-gray-400 hover:text-white">
+          🎟️ Coupons
+        </button>
+        <button onclick="switchAdminTab('settings')" id="atab-btn-settings" class="px-4 py-2 text-xs font-bold rounded-lg text-gray-400 hover:text-white">
+          ⚙️ Payment Numbers
+        </button>
+      </div>
+
+      <!-- TAB 1: PLATFORM LOGO & BRANDING (GALLERY UPLOAD) -->
+      <div id="atab-branding" class="space-y-6">
+        <div class="glass p-6 rounded-2xl border border-gray-800 max-w-xl space-y-4 text-xs">
+          <h3 class="text-sm font-bold text-white flex items-center gap-2">
+            <i class="fa-solid fa-image text-cruxCyan"></i> মাস্টার প্ল্যাটফর্ম লোগো সেটআপ (গ্যালারি থেকে সিলেক্ট করুন)
+          </h3>
+          <p class="text-gray-400">নিচের বক্সে ক্লিক করলেই সরাসরি আপনার ফোনের গ্যালারি বা ফাইল ম্যানেজার ওপেন হবে। যেকোনো JPG/PNG ছবি সিলেক্ট করলেই তা পুরো প্ল্যাটফর্মের ব্র্যান্ড লোগো হিসেবে সেট হয়ে যাবে।</p>
+          
+          <div class="flex items-center gap-4">
+            <div id="admin-current-logo-preview" class="w-16 h-16 rounded-xl glass border border-cruxCyan flex items-center justify-center overflow-hidden">
+              <span class="text-xl font-bold text-cruxCyan">C</span>
+            </div>
+            <label class="px-5 py-3 bg-gradient-to-r from-cyan-500 to-blue-600 text-black font-bold rounded-xl cursor-pointer hover:opacity-90 shadow-lg">
+              <i class="fa-solid fa-cloud-arrow-up mr-2"></i> গ্যালারি থেকে লোগো আপলোড করুন
+              <input type="file" id="admin-logo-file-input" accept="image/*" class="hidden" onchange="handleLogoUpload(event)">
+            </label>
+          </div>
+          <button onclick="resetPlatformLogo()" class="px-4 py-2 bg-red-500/20 text-red-400 border border-red-500/30 rounded-lg">
+            ডিফল্ট লোগোতে ফিরে যান
+          </button>
+        </div>
+      </div>
+
+      <!-- TAB 2: ADD / EDIT COURSES & EXAMS (WITH IMAGE/LOGO & MEDICAL LINK) -->
+      <div id="atab-courses" class="hidden space-y-6">
+        <div class="glass p-6 rounded-2xl border border-gray-800 space-y-4 text-xs">
+          <h3 id="course-form-heading" class="text-sm font-bold text-white flex items-center gap-2">
+            <i class="fa-solid fa-plus-circle text-cruxCyan"></i> নতুন কোর্স / মেডিকেল প্র্যাকটিস সেট যুক্ত করুন
+          </h3>
+          <input type="hidden" id="edit-course-id" value="">
+          
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div>
+              <label class="text-gray-400 block mb-1">কোর্স বা ব্যাচ টাইটেল:</label>
+              <input type="text" id="ac-title" placeholder="যেমন: MBBS Masterpiece Exam Batch" class="w-full bg-gray-900 border border-gray-700 rounded-lg p-2.5 text-white">
+            </div>
+            <div>
+              <label class="text-gray-400 block mb-1">ক্যাটাগরি:</label>
+              <select id="ac-category" class="w-full bg-gray-900 border border-gray-700 rounded-lg p-2.5 text-white">
+                <option value="MBBS">MBBS Medical</option>
+                <option value="Engineering">Engineering</option>
+                <option value="Varsity">Varsity & Guchha</option>
+                <option value="HSC">HSC Academic</option>
+                <option value="BCS">BCS & Jobs</option>
+              </select>
+            </div>
+            <div>
+              <label class="text-gray-400 block mb-1">ফি / মূল্য (৳):</label>
+              <input type="number" id="ac-price" placeholder="499" class="w-full bg-gray-900 border border-gray-700 rounded-lg p-2.5 text-white">
+            </div>
+            <div>
+              <label class="text-gray-400 block mb-1">মেডিকেল/এক্সাম পেজ লিংক (Vercel/Netlify URL):</label>
+              <input type="text" id="ac-link" placeholder="https://my-exam-portal.vercel.app" class="w-full bg-gray-900 border border-gray-700 rounded-lg p-2.5 text-white">
+            </div>
+            <div class="sm:col-span-2">
+              <label class="text-gray-400 block mb-1">কোর্স ব্যানার / লোগো ছবি (গ্যালারি থেকে সিলেক্ট করুন):</label>
+              <input type="file" id="ac-image-file" accept="image/*" class="w-full bg-gray-900 border border-gray-700 rounded-lg p-2 text-white text-xs">
+            </div>
+          </div>
+          
+          <div class="flex gap-3">
+            <button onclick="saveAdminCourse()" class="px-6 py-2.5 bg-cruxCyan text-black font-bold rounded-xl hover:bg-cyan-300">
+              <i class="fa-solid fa-floppy-disk mr-1"></i> কোর্স সেভ করুন
+            </button>
+            <button onclick="resetCourseForm()" id="cancel-edit-btn" class="hidden px-4 py-2.5 bg-gray-800 text-gray-300 rounded-xl">
+              বাতিল
+            </button>
+          </div>
+        </div>
+
+        <div class="space-y-3">
+          <h3 class="text-sm font-bold text-white">সকল কোর্স ও এক্সাম লিংক ম্যানেজমেন্ট তালিকা</h3>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4" id="admin-courses-list"></div>
+        </div>
+      </div>
+
+      <!-- TAB 3: PAYOUTS -->
+      <div id="atab-payouts" class="hidden space-y-4">
+        <h3 class="text-sm font-bold text-white">পেমেন্ট ও রেফারেল পে-আউট ম্যানেজমেন্ট</h3>
+        <div class="glass rounded-xl overflow-x-auto">
+          <table class="w-full text-left text-xs text-gray-300">
+            <thead class="bg-gray-900/80 text-gray-400 uppercase text-[10px] border-b border-gray-800">
+              <tr>
+                <th class="p-3">তারিখ</th>
+                <th class="p-3">ইউজার / ফোন</th>
+                <th class="p-3">কোর্স</th>
+                <th class="p-3">TrxID</th>
+                <th class="p-3">কমিশন</th>
+                <th class="p-3 text-right">আকশন</th>
+              </tr>
+            </thead>
+            <tbody id="admin-payout-table" class="divide-y divide-gray-800"></tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- TAB 4: COUPONS -->
+      <div id="atab-coupons" class="hidden space-y-6">
+        <div class="glass p-5 rounded-xl border border-gray-800 space-y-4 text-xs">
+          <h3 class="text-sm font-bold text-white">কাস্টম কুপন তৈরি করুন</h3>
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+            <input type="text" id="acc-code" placeholder="কোড (যেমন: CRMC70)" class="bg-gray-900 border border-gray-700 rounded-lg p-2.5 text-white uppercase">
+            <input type="number" id="acc-discount" placeholder="ডিসকাউন্ট (%)" class="bg-gray-900 border border-gray-700 rounded-lg p-2.5 text-white">
+            <input type="date" id="acc-expiry" class="bg-gray-900 border border-gray-700 rounded-lg p-2.5 text-white">
+          </div>
+          <button onclick="adminCreateCoupon()" class="px-5 py-2 bg-emerald-500 text-black font-bold rounded-xl">কুপন সেভ করুন</button>
+        </div>
+        <div class="glass rounded-xl overflow-hidden">
+          <table class="w-full text-left text-xs text-gray-300">
+            <thead class="bg-gray-900 text-gray-400 uppercase text-[10px]">
+              <tr>
+                <th class="p-3">কোড</th>
+                <th class="p-3">ডিসকাউন্ট</th>
+                <th class="p-3">মেয়াদ</th>
+                <th class="p-3 text-right">আকশন</th>
+              </tr>
+            </thead>
+            <tbody id="admin-coupons-table" class="divide-y divide-gray-800"></tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- TAB 5: SETTINGS -->
+      <div id="atab-settings" class="hidden space-y-6">
+        <div class="glass p-5 rounded-xl border border-gray-800 space-y-4 max-w-lg text-xs">
+          <h3 class="text-sm font-bold text-white">পেমেন্ট নম্বর আপডেট</h3>
+          <div>
+            <label class="text-gray-400 mb-1 block">বিকাশ পার্সোনাল:</label>
+            <input type="text" id="as-bkash" class="w-full bg-gray-900 border border-gray-700 rounded-lg p-2.5 text-white font-mono">
+          </div>
+          <div>
+            <label class="text-gray-400 mb-1 block">নগদ পার্সোনাল:</label>
+            <input type="text" id="as-nagad" class="w-full bg-gray-900 border border-gray-700 rounded-lg p-2.5 text-white font-mono">
+          </div>
+          <button onclick="adminSaveSettings()" class="px-5 py-2 bg-cruxCyan text-black font-bold rounded-xl">সেভ করুন</button>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Footer Navigation -->
+  <footer class="glass border-t border-gray-800 sticky bottom-0 z-40 py-2 px-4 sm:px-8">
+    <div class="max-w-md mx-auto flex justify-between items-center text-center text-xs">
+      <button onclick="navTo('home')" id="nav-btn-home" class="flex flex-col items-center gap-1 text-cruxCyan">
+        <i class="fa-solid fa-house text-lg"></i><span>হোম</span>
+      </button>
+      <button onclick="navTo('courses')" id="nav-btn-courses" class="flex flex-col items-center gap-1 text-gray-400 hover:text-white">
+        <i class="fa-solid fa-graduation-cap text-lg"></i><span>কোর্সসমূহ</span>
+      </button>
+      <button onclick="navTo('mistakes')" id="nav-btn-mistakes" class="flex flex-col items-center gap-1 text-gray-400 hover:text-white relative">
+        <i class="fa-solid fa-book-open text-lg"></i><span>ভুলের ডায়েরি</span>
+        <span id="mistake-badge" class="hidden absolute -top-1 right-2 w-2 h-2 rounded-full bg-red-500"></span>
+      </button>
+      <button onclick="navTo('vault')" id="nav-btn-vault" class="flex flex-col items-center gap-1 text-gray-400 hover:text-white">
+        <i class="fa-solid fa-folder-open text-lg"></i><span>ভল্ট</span>
+      </button>
+      <button onclick="navTo('dashboard')" id="nav-btn-dashboard" class="flex flex-col items-center gap-1 text-gray-400 hover:text-white">
+        <i class="fa-solid fa-user text-lg"></i><span>প্রোফাইল</span>
+      </button>
+    </div>
+  </footer>
+
+  <!-- AUTH MODAL -->
+  <div id="auth-modal" class="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+    <div class="glass border border-cyan-500/30 rounded-2xl w-full max-w-md p-6 relative space-y-5">
+      <button onclick="closeAuthModal()" class="absolute top-4 right-4 text-gray-400 hover:text-white"><i class="fa-solid fa-xmark text-lg"></i></button>
+      <div class="text-center space-y-1">
+        <h3 class="text-xl font-black text-white">CRUX অ্যাকাউন্ট</h3>
+        <p class="text-xs text-gray-400">প্র্যাকটিস হাব</p>
+      </div>
+      <div id="auth-step-1" class="space-y-4 text-xs">
+        <input type="text" id="auth-name" placeholder="নাম" class="w-full bg-gray-900 border border-gray-700 rounded-xl p-3 text-white">
+        <input type="tel" id="auth-phone" placeholder="মোবাইল নম্বর (01XXXXXXXXX)" class="w-full bg-gray-900 border border-gray-700 rounded-xl p-3 text-white font-mono">
+        <input type="password" id="auth-pass" placeholder="পাসওয়ার্ড" class="w-full bg-gray-900 border border-gray-700 rounded-xl p-3 text-white">
+        <button onclick="triggerOtpSend()" class="w-full py-3 bg-cruxCyan text-black font-bold rounded-xl">OTP পাঠান</button>
+      </div>
+      <div id="auth-step-2" class="hidden space-y-4 text-center text-xs">
+        <input type="text" id="auth-otp-input" maxlength="5" placeholder="12345" class="w-full bg-gray-900 border border-cruxCyan rounded-xl p-3 text-center text-lg font-mono tracking-widest text-cruxCyan">
+        <button onclick="verifyOtpAndLogin()" class="w-full py-3 bg-emerald-500 text-black font-bold rounded-xl">ভেরিফাই ও লগইন</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ENROLL MODAL -->
+  <div id="enroll-modal" class="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+    <div class="glass border border-cyan-500/30 rounded-2xl w-full max-w-md p-6 relative space-y-4 text-xs max-h-[90vh] overflow-y-auto">
+      <button onclick="closeEnrollModal()" class="absolute top-4 right-4 text-gray-400 hover:text-white"><i class="fa-solid fa-xmark text-lg"></i></button>
+      <div class="border-b border-gray-800 pb-2"><h3 id="em-course-title" class="text-base font-black text-white">--</h3></div>
+      <div class="p-3 bg-gray-900 rounded-xl border border-gray-800 space-y-1 font-mono text-cyan-300">
+        <div>bKash: <strong id="em-bkash-no">01712949003</strong></div>
+        <div>Nagad: <strong id="em-nagad-no">01712949003</strong></div>
+      </div>
+      <div class="space-y-1">
+        <div class="flex justify-between text-gray-300"><span>মূল্য:</span><span id="em-base-price" class="font-bold">৳ 0</span></div>
+        <div class="flex justify-between text-emerald-400"><span>ডিসকাউন্ট:</span><span id="em-discount-amount">- ৳ 0</span></div>
+        <div class="flex justify-between text-white font-bold text-sm border-t border-gray-800 pt-1"><span>সর্বমোট:</span><span id="em-final-price" class="text-cruxCyan">৳ 0</span></div>
+      </div>
+      <div class="flex gap-2">
+        <input type="text" id="em-coupon-input" placeholder="কুপন কোড" class="bg-gray-900 border border-gray-700 rounded-xl px-3 py-2 text-white uppercase flex-grow">
+        <button onclick="applyCoupon()" class="px-4 py-2 bg-gray-800 text-white rounded-xl">Apply</button>
+      </div>
+      <p id="em-coupon-msg" class="text-[11px]"></p>
+      <input type="tel" id="em-sender-phone" placeholder="প্রেরক নম্বর" class="w-full bg-gray-900 border border-gray-700 rounded-xl p-2.5 text-white font-mono">
+      <input type="text" id="em-trx-id" placeholder="TrxID" class="w-full bg-gray-900 border border-gray-700 rounded-xl p-2.5 text-white font-mono uppercase">
+      <button onclick="submitEnrollment()" class="w-full py-3 bg-cruxCyan text-black font-bold rounded-xl">পেমেন্ট কনফার্ম</button>
+    </div>
+  </div>
+
+  <!-- ADMIN LOGIN MODAL -->
+  <div id="admin-login-modal" class="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+    <div class="glass border border-amber-500/30 rounded-2xl w-full max-w-sm p-6 relative space-y-4 text-xs">
+      <button onclick="closeAdminLoginModal()" class="absolute top-4 right-4 text-gray-400 hover:text-white"><i class="fa-solid fa-xmark text-lg"></i></button>
+      <h3 class="text-base font-bold text-amber-400 text-center"><i class="fa-solid fa-lock"></i> God-Mode Admin</h3>
+      <input type="tel" id="admin-phone-input" placeholder="নম্বর" class="w-full bg-gray-900 border border-gray-700 rounded-xl p-3 text-white font-mono">
+      <input type="password" id="admin-pass-input" placeholder="পাসওয়ার্ড" class="w-full bg-gray-900 border border-gray-700 rounded-xl p-3 text-white">
+      <button onclick="handleAdminLogin()" class="w-full py-3 bg-amber-500 text-black font-bold rounded-xl">লগইন</button>
+    </div>
+  </div>
+
+  <!-- JAVASCRIPT ENGINE -->
+  <script>
+    const DB_KEYS = {
+      USERS: 'crux_users_v3',
+      COURSES: 'crux_courses_v3',
+      COUPONS: 'crux_coupons_v3',
+      ENROLLMENTS: 'crux_enrollments_v3',
+      SETTINGS: 'crux_settings_v3',
+      MISTAKES: 'crux_mistakes_v3',
+      SESSION: 'crux_session_v3',
+      VAULT: 'crux_vault_v3',
+      LOGO: 'crux_platform_logo'
+    };
+
+    let state = {
+      currentUser: null,
+      courses: JSON.parse(localStorage.getItem(DB_KEYS.COURSES)) || [
+        { id: 'mbbs-master', title: 'MBBS Masterpiece Batch (PYQ & Predicted)', category: 'MBBS', price: 499, link: 'https://example.com/exam/mbbs', image: '' }
+      ],
+      coupons: JSON.parse(localStorage.getItem(DB_KEYS.COUPONS)) || [{ code: 'CRMC70', discount: 70, expiry: '2027-12-31' }],
+      users: JSON.parse(localStorage.getItem(DB_KEYS.USERS)) || [],
+      enrollments: JSON.parse(localStorage.getItem(DB_KEYS.ENROLLMENTS)) || [],
+      settings: JSON.parse(localStorage.getItem(DB_KEYS.SETTINGS)) || { bkash: '01712949003', nagad: '01712949003' },
+      vault: [{ id: 'v1', title: 'রেটিনা মেডিকেল ডাইজেস্ট', category: 'MBBS', size: '24 MB' }],
+      mistakes: JSON.parse(localStorage.getItem(DB_KEYS.MISTAKES)) || [],
+      activeFilter: 'ALL',
+      tempEnrollCourse: null,
+      appliedCouponObj: null,
+      generatedOtp: null
+    };
+
+    function saveState() {
+      localStorage.setItem(DB_KEYS.USERS, JSON.stringify(state.users));
+      localStorage.setItem(DB_KEYS.COURSES, JSON.stringify(state.courses));
+      localStorage.setItem(DB_KEYS.COUPONS, JSON.stringify(state.coupons));
+      localStorage.setItem(DB_KEYS.ENROLLMENTS, JSON.stringify(state.enrollments));
+      localStorage.setItem(DB_KEYS.SETTINGS, JSON.stringify(state.settings));
+      localStorage.setItem(DB_KEYS.MISTAKES, JSON.stringify(state.mistakes));
+    }
+
+    function applyPlatformLogo() {
+      const savedLogo = localStorage.getItem(DB_KEYS.LOGO);
+      const textEl = document.getElementById('brand-logo-text');
+      const imgEl = document.getElementById('brand-logo-img');
+      const previewEl = document.getElementById('admin-current-logo-preview');
+
+      if(savedLogo) {
+        textEl.classList.add('hidden');
+        imgEl.src = savedLogo;
+        imgEl.classList.remove('hidden');
+        if(previewEl) {
+          previewEl.innerHTML = `<img src="${savedLogo}" class="w-full h-full object-cover">`;
+        }
+      } else {
+        textEl.classList.remove('hidden');
+        imgEl.classList.add('hidden');
+        if(previewEl) {
+          previewEl.innerHTML = `<span class="text-xl font-bold text-cruxCyan">C</span>`;
+        }
+      }
+    }
+
+    function handleLogoUpload(event) {
+      const file = event.target.files[0];
+      if(!file) return;
+      const reader = new FileReader();
+      reader.onload = function(e) {
+        localStorage.setItem(DB_KEYS.LOGO, e.target.result);
+        applyPlatformLogo();
+        alert('সফলভাবে গ্যালারি থেকে প্ল্যাটফর্ম লোগো আপডেট করা হয়েছে!');
+      };
+      reader.readAsDataURL(file);
+    }
+
+    function resetPlatformLogo() {
+      localStorage.removeItem(DB_KEYS.LOGO);
+      applyPlatformLogo();
+      alert('ডিফল্ট লোগোতে ফিরিয়ে আনা হয়েছে!');
+    }
+
+    function navTo(pageId) {
+      ['home', 'courses', 'exam-runner', 'mistakes', 'vault', 'dashboard', 'admin'].forEach(p => {
+        document.getElementById(`page-${p}`).classList.add('hidden');
+      });
+      document.getElementById(`page-${pageId}`).classList.remove('hidden');
+
+      ['home', 'courses', 'mistakes', 'vault', 'dashboard'].forEach(btn => {
+        const b = document.getElementById(`nav-btn-${btn}`);
+        if(b) b.className = btn === pageId ? "flex flex-col items-center gap-1 text-cruxCyan font-bold" : "flex flex-col items-center gap-1 text-gray-400 hover:text-white";
+      });
+
+      if(pageId === 'courses') renderCourseList();
+      if(pageId === 'vault') renderVaultList();
+      if(pageId === 'dashboard') renderDashboard();
+      if(pageId === 'admin') renderAdminPanel();
+      if(pageId === 'mistakes') renderMistakes();
+      window.scrollTo(0,0);
+    }
+
+    function checkSession() {
+      const saved = JSON.parse(localStorage.getItem(DB_KEYS.SESSION));
+      if(saved) {
+        state.currentUser = state.users.find(x => x.phone === saved.phone) || saved;
+      }
+      updateHeaderUI();
+      applyPlatformLogo();
+      renderHomeCategories();
+    }
+
+    function openAuthModal() { document.getElementById('auth-modal').classList.remove('hidden'); }
+    function closeAuthModal() { document.getElementById('auth-modal').classList.add('hidden'); }
+
+    function triggerOtpSend() {
+      const phone = document.getElementById('auth-phone').value.trim();
+      const pass = document.getElementById('auth-pass').value.trim();
+      if(!phone || !pass) { alert('সব ফিল্ড দিন'); return; }
+      state.generatedOtp = '12345';
+      alert('[SMS SIMULATOR]: OTP হলো: 12345');
+      document.getElementById('auth-step-1').classList.add('hidden');
+      document.getElementById('auth-step-2').classList.remove('hidden');
+    }
+
+    function verifyOtpAndLogin() {
+      if(document.getElementById('auth-otp-input').value.trim() !== '12345') { alert('ভুল OTP'); return; }
+      const phone = document.getElementById('auth-phone').value.trim();
+      const name = document.getElementById('auth-name').value.trim() || 'Student';
+      const pass = document.getElementById('auth-pass').value.trim();
+      
+      let u = state.users.find(x => x.phone === phone);
+      if(!u) {
+        u = { id: 'STU-' + Math.floor(10000+Math.random()*90000), name, phone, pass, referralCode: 'CRUX-' + phone.slice(-4), referralEarnings: 0 };
+        state.users.push(u);
+      }
+      state.currentUser = u;
+      saveState();
+      localStorage.setItem(DB_KEYS.SESSION, JSON.stringify({ phone: u.phone }));
+      closeAuthModal();
+      updateHeaderUI();
+      alert('সফলভাবে লগইন হয়েছে!');
+    }
+
+    function logoutUser() {
+      state.currentUser = null;
+      localStorage.removeItem(DB_KEYS.SESSION);
+      updateHeaderUI();
+      navTo('home');
+    }
+
+    function updateHeaderUI() {
+      const c = document.getElementById('header-user-status');
+      if(state.currentUser) {
+        c.innerHTML = `<button onclick="navTo('dashboard')" class="text-xs text-cruxCyan font-bold glass px-3 py-1.5 rounded-xl border border-cyan-500/30">${state.currentUser.name}</button><button onclick="logoutUser()" class="text-xs text-red-400"><i class="fa-solid fa-right-from-bracket"></i></button>`;
+      } else {
+        c.innerHTML = `<button onclick="openAdminLoginModal()" class="text-xs text-amber-400 pr-2"><i class="fa-solid fa-lock"></i> Admin</button><button onclick="openAuthModal()" class="px-4 py-2 bg-cruxCyan text-black font-bold rounded-xl text-xs">লগইন</button>`;
+      }
+    }
+
+    function renderHomeCategories() {
+      const cats = [
+        { name: 'MBBS Medical', key: 'MBBS', icon: 'fa-user-doctor', color: 'text-cyan-400' },
+        { name: 'Engineering', key: 'Engineering', icon: 'fa-compass-drafting', color: 'text-blue-400' },
+        { name: 'Varsity & Guchha', key: 'Varsity', icon: 'fa-building-columns', color: 'text-purple-400' },
+        { name: 'HSC Academic', key: 'HSC', icon: 'fa-graduation-cap', color: 'text-emerald-400' }
+      ];
+      document.getElementById('home-category-grid').innerHTML = cats.map(cat => `
+        <div onclick="filterCategoryAndNav('${cat.key}')" class="glass p-4 rounded-xl border border-gray-800 hover:border-cruxCyan cursor-pointer transition text-center space-y-2">
+          <i class="fa-solid ${cat.icon} text-2xl ${cat.color}"></i>
+          <h4 class="text-xs font-bold text-white">${cat.name}</h4>
+        </div>
+      `).join('');
+    }
+
+    function filterCategoryAndNav(k) { state.activeFilter = k; navTo('courses'); }
+
+    function renderCourseList() {
+      const cats = ['ALL', 'MBBS', 'Engineering', 'Varsity', 'HSC', 'BCS'];
+      document.getElementById('course-filter-pills').innerHTML = cats.map(c => `
+        <button onclick="setCourseFilter('${c}')" class="px-3 py-1.5 rounded-lg text-xs font-bold shrink-0 transition ${state.activeFilter === c ? 'bg-cruxCyan text-black' : 'glass text-gray-400'}">${c}</button>
+      `).join('');
+
+      const list = state.activeFilter === 'ALL' ? state.courses : state.courses.filter(c => c.category === state.activeFilter);
+      document.getElementById('course-list-container').innerHTML = list.map(c => `
+        <div class="glass p-5 rounded-2xl border border-gray-800 flex flex-col justify-between gap-4">
+          <div class="space-y-2">
+            ${c.image ? `<div class="w-full h-36 rounded-xl overflow-hidden border border-gray-800 mb-2"><img src="${c.image}" class="w-full h-full object-cover"></div>` : ''}
+            <span class="px-2 py-0.5 text-[10px] rounded-full bg-cyan-500/10 text-cruxCyan border border-cyan-500/30 font-bold uppercase">${c.category}</span>
+            <h3 class="text-base font-bold text-white">${c.title}</h3>
+          </div>
+          <div class="flex items-center justify-between border-t border-gray-800 pt-3">
+            <span class="text-lg font-black text-cruxCyan">৳ ${c.price}</span>
+            <div class="flex gap-2">
+              <button onclick="launchExamRunner('${c.id}')" class="px-3 py-2 bg-gray-800 text-white font-bold text-xs rounded-xl"><i class="fa-solid fa-play text-cruxCyan"></i> প্র্যাকটিস</button>
+              <button onclick="openEnrollModal('${c.id}')" class="px-3 py-2 bg-cruxCyan text-black font-bold text-xs rounded-xl">এনরোল</button>
+            </div>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    function setCourseFilter(c) { state.activeFilter = c; renderCourseList(); }
+
+    function launchExamRunner(id) {
+      const c = state.courses.find(x => x.id === id);
+      if(!c) return;
+      document.getElementById('exam-runner-title').innerText = c.title;
+      document.getElementById('exam-iframe').src = c.link;
+      navTo('exam-runner');
+    }
+
+    function saveCurrentMistakeMock() {
+      state.mistakes.unshift({ id: 'MST-' + Date.now(), question: 'নমুনা প্রশ্ন', wrongAnswer: 'ভুল', correctAnswer: 'সঠিক', subject: 'Biology', timestamp: new Date().toLocaleDateString() });
+      saveState();
+      alert('ভুল ডায়েরিতে সেভ হয়েছে!');
+    }
+
+    function renderMistakes() {
+      const c = document.getElementById('mistake-list');
+      c.innerHTML = state.mistakes.length === 0 ? `<div class="text-center py-12 glass rounded-xl text-gray-500 text-xs">কোনো ভুল নেই।</div>` :
+        state.mistakes.map(m => `<div class="glass p-4 rounded-xl border border-red-500/20 text-xs"><h4 class="font-bold text-white">${m.question}</h4><p class="text-red-300">ভুল: ${m.wrongAnswer} | সঠিক: ${m.correctAnswer}</p></div>`).join('');
+    }
+
+    function clearMistakeVault() { state.mistakes = []; saveState(); renderMistakes(); }
+    function renderVaultList() {
+      document.getElementById('vault-list-container').innerHTML = state.vault.map(v => `<div class="glass p-5 rounded-2xl border border-gray-800 text-xs"><h3 class="text-sm font-bold text-white">${v.title}</h3><button onclick="alert('ডাউনলোড শুরু...')" class="mt-3 w-full py-2 bg-gray-800 text-white rounded-xl">ডাউনলোড</button></div>`).join('');
+    }
+
+    function openEnrollModal(id) {
+      state.tempEnrollCourse = state.courses.find(x => x.id === id);
+      document.getElementById('em-course-title').innerText = state.tempEnrollCourse.title;
+      document.getElementById('em-base-price').innerText = `৳ ${state.tempEnrollCourse.price}`;
+      document.getElementById('em-final-price').innerText = `৳ ${state.tempEnrollCourse.price}`;
+      document.getElementById('enroll-modal').classList.remove('hidden');
+    }
+    function closeEnrollModal() { document.getElementById('enroll-modal').classList.add('hidden'); }
+
+    function applyCoupon() {
+      const code = document.getElementById('em-coupon-input').value.trim().toUpperCase();
+      let c = state.coupons.find(x => x.code === code);
+      if(c) {
+        let disc = Math.round((state.tempEnrollCourse.price * c.discount)/100);
+        document.getElementById('em-discount-amount').innerText = `- ৳ ${disc}`;
+        document.getElementById('em-final-price').innerText = `৳ ${state.tempEnrollCourse.price - disc}`;
+        document.getElementById('em-coupon-msg').innerText = "✅ কুপন সফল!";
+      }
+    }
+
+    function submitEnrollment() {
+      if(!state.currentUser) { openAuthModal(); return; }
+      state.enrollments.unshift({ id: 'ENR-' + Date.now(), userName: state.currentUser.name, userPhone: state.currentUser.phone, courseTitle: state.tempEnrollCourse.title, trxId: document.getElementById('em-trx-id').value, date: new Date().toLocaleString() });
+      saveState();
+      closeEnrollModal();
+      alert('সফলভাবে সাবমিট হয়েছে!');
+      navTo('dashboard');
+    }
+
+    function renderDashboard() {
+      if(!state.currentUser) { openAuthModal(); return; }
+      document.getElementById('dash-user-name').innerText = state.currentUser.name;
+      document.getElementById('dash-user-phone').innerText = `Phone: ${state.currentUser.phone}`;
+      document.getElementById('dash-ref-balance').innerText = `৳ ${(state.currentUser.referralEarnings || 0).toFixed(2)}`;
+      document.getElementById('dash-ref-code-input').value = state.currentUser.referralCode;
+      document.getElementById('dash-ref-url-input').value = `${window.location.origin}?ref=${state.currentUser.referralCode}`;
+      document.getElementById('dash-enrolled-list').innerHTML = state.enrollments.filter(e => e.userPhone === state.currentUser.phone).map(e => `<div class="glass p-4 rounded-xl text-xs"><h4 class="font-bold text-white">${e.courseTitle}</h4></div>`).join('') || '<div class="text-xs text-gray-500">এনরোলমেন্ট নেই।</div>';
+    }
+
+    function copyReferralLink() { document.getElementById('dash-ref-url-input').select(); document.execCommand('copy'); alert('কপি হয়েছে!'); }
+
+    function openAdminLoginModal() { document.getElementById('admin-login-modal').classList.remove('hidden'); }
+    function closeAdminLoginModal() { document.getElementById('admin-login-modal').classList.add('hidden'); }
+
+    function handleAdminLogin() {
+      if(document.getElementById('admin-phone-input').value.trim() === '01712949003' && document.getElementById('admin-pass-input').value.trim() === 'CruxMaster@2026#') {
+        sessionStorage.setItem('crux_admin', 'true');
+        closeAdminLoginModal();
+        navTo('admin');
+      } else { alert('ভুল ক্রেডেনশিয়াল!'); }
+    }
+    function logoutAdmin() { sessionStorage.removeItem('crux_admin'); navTo('home'); }
+
+    function switchAdminTab(t) {
+      ['branding', 'courses', 'payouts', 'coupons', 'settings'].forEach(tab => {
+        document.getElementById(`atab-${tab}`).classList.add('hidden');
+        document.getElementById(`atab-btn-${tab}`).className = "px-4 py-2 text-xs font-bold rounded-lg text-gray-400 hover:text-white";
+      });
+      document.getElementById(`atab-${t}`).classList.remove('hidden');
+      document.getElementById(`atab-btn-${t}`).className = "px-4 py-2 text-xs font-bold rounded-lg bg-cruxCyan text-black";
+    }
+
+    function renderAdminPanel() {
+      if(!sessionStorage.getItem('crux_admin')) { openAdminLoginModal(); return; }
+      renderAdminCourses();
+      renderAdminCoupons();
+      renderAdminPayouts();
+    }
+
+    function saveAdminCourse() {
+      const id = document.getElementById('edit-course-id').value || ('CRS-' + Date.now());
+      const title = document.getElementById('ac-title').value.trim();
+      const category = document.getElementById('ac-category').value;
+      const price = parseFloat(document.getElementById('ac-price').value);
+      const link = document.getElementById('ac-link').value.trim();
+      const imageFile = document.getElementById('ac-image-file').files[0];
+
+      if(!title || !price || !link) { alert('সব ফিল্ড পূরণ করুন'); return; }
+
+      const proceedSave = (imgData = '') => {
+        const existingIdx = state.courses.findIndex(x => x.id === id);
+        const courseObj = { id, title, category, price, link, image: imgData || (existingIdx !== -1 ? state.courses[existingIdx].image : '') };
+        
+        if(existingIdx !== -1) state.courses[existingIdx] = courseObj;
+        else state.courses.unshift(courseObj);
+
+        saveState();
+        renderAdminCourses();
+        resetCourseForm();
+        alert('কোর্স সফলভাবে সংরক্ষিত হয়েছে!');
+      };
+      if(imageFile) {
+        const reader = new FileReader();
+        reader.onload = function(e) { proceedSave(e.target.result); };
+        reader.readAsDataURL(imageFile);
+      } else {
+        proceedSave();
+      }
+    }
+
+    function editAdminCourse(id) {
+      const c = state.courses.find(x => x.id === id);
+      if(!c) return;
+      document.getElementById('edit-course-id').value = c.id;
+      document.getElementById('ac-title').value = c.title;
+      document.getElementById('ac-category').value = c.category;
+      document.getElementById('ac-price').value = c.price;
+      document.getElementById('ac-link').value = c.link;
+      document.getElementById('course-form-heading').innerText = "✏️ কোর্স বা মেডিকেল এক্সাম এডিট করুন";
+      document.getElementById('cancel-edit-btn').classList.remove('hidden');
+      switchAdminTab('courses');
+    }
+
+    function resetCourseForm() {
+      document.getElementById('edit-course-id').value = '';
+      document.getElementById('ac-title').value = '';
+      document.getElementById('ac-price').value = '';
+      document.getElementById('ac-link').value = '';
+      document.getElementById('ac-image-file').value = '';
+      document.getElementById('course-form-heading').innerText = "➕ নতুন কোর্স / মেডিকেল প্র্যাকটিস সেট যুক্ত করুন";
+      document.getElementById('cancel-edit-btn').classList.add('hidden');
+    }
+
+    function renderAdminCourses() {
+      document.getElementById('admin-courses-list').innerHTML = state.courses.map(c => `
+        <div class="glass p-3 rounded-xl border border-gray-800 flex justify-between items-center text-xs">
+          <div>
+            <h4 class="font-bold text-white">${c.title}</h4>
+            <p class="text-gray-400">${c.category} • ৳ ${c.price}</p>
+          </div>
+          <div class="flex gap-2">
+            <button onclick="editAdminCourse('${c.id}')" class="text-cyan-400 p-2"><i class="fa-solid fa-pen"></i></button>
+            <button onclick="state.courses = state.courses.filter(x => x.id !== '${c.id}'); saveState(); renderAdminCourses();" class="text-red-400 p-2"><i class="fa-solid fa-trash"></i></button>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    function adminCreateCoupon() {
+      const code = document.getElementById('acc-code').value.trim().toUpperCase();
+      const discount = parseFloat(document.getElementById('acc-discount').value);
+      const expiry = document.getElementById('acc-expiry').value;
+      if(!code || !discount) return;
+      state.coupons.unshift({ code, discount, expiry });
+      saveState();
+      renderAdminCoupons();
+      alert('কুপন সেভ হয়েছে!');
+    }
+
+    function renderAdminCoupons() {
+      document.getElementById('admin-coupons-table').innerHTML = state.coupons.map(c => `<tr><td class="p-3 text-cruxCyan font-bold">${c.code}</td><td class="p-3">${c.discount}%</td><td class="p-3">${c.expiry}</td><td class="p-3 text-right"><button onclick="state.coupons=state.coupons.filter(x=>x.code!=='${c.code}');saveState();renderAdminCoupons();" class="text-red-400"><i class="fa-solid fa-trash"></i></button></td></tr>`).join('');
+    }
+
+    function renderAdminPayouts() {
+      document.getElementById('admin-payout-table').innerHTML = state.enrollments.map(e => `<tr><td class="p-3">${e.date}</td><td class="p-3">${e.userName}</td><td class="p-3">${e.courseTitle}</td><td class="p-3 font-mono">${e.trxId}</td><td class="p-3">N/A</td><td class="p-3 text-right"><button onclick="alert('Paid')" class="px-2 py-1 bg-emerald-500/20 text-emerald-300 rounded">Pay Out</button></td></tr>`).join('');
+    }
+
+    function adminSaveSettings() {
+      state.settings.bkash = document.getElementById('as-bkash').value;
+      state.settings.nagad = document.getElementById('as-nagad').value;
+      saveState();
+      alert('সেটিংস সেভ হয়েছে!');
+    }
+
+    window.addEventListener('DOMContentLoaded', () => {
+      checkSession();
+    });
+  </script>
+</body>
+</html>
